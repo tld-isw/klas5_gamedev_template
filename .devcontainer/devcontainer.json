@@ -1,0 +1,23 @@
+{
+  "name": "Gamedev - Pygame",
+  "image": "mcr.microsoft.com/devcontainers/python:3.13-trixie",
+  "features": {
+    "ghcr.io/devcontainers/features/desktop-lite:latest": {
+      "version": "latest",
+      "noVncVersion": "1.6.0",
+      "password": "noPassword",
+      "webPort": "6080",
+      "vncPort": "5901"
+    }
+  },
+  "forwardPorts": [6080],
+  "portsAttributes": {
+    "6080": {"label": "Gamevenster (GUI)", "onAutoForward": "openPreview"}
+  },
+  "postCreateCommand": "bash .devcontainer/postCreateCommand.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-python.python", "mhutchie.git-graph", "ms-vsliveshare.vsliveshare"]
+    }
+  }
+}
