@@ -75,9 +75,8 @@ meteen afbeeldingen; als een afbeelding ontbreekt, verschijnt een gekleurde vorm
 | Vuurbol (les 5 en 6) | `blue_fire_small.png` |
 
 De map bevat daarnaast varianten van de personages voor achter, links en rechts,
-andere personages, een zilveren munt, magieprojectielen en achtergronden. De namen
-`warriorman` en `warriorwoman` zijn bewust gecorrigeerd; gebruik de exacte
-bestandsnamen. De vuurballen in de startgame gaan alleen naar rechts. Een andere
+andere personages, een zilveren munt, magieprojectielen en achtergronden. De 
+vuurballen in de startgame gaan alleen naar rechts. Een andere
 richting of animatie toevoegen is een mogelijke uitbreiding, geen vereiste
 voor het starten van de lessen.
 
