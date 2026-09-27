@@ -15,8 +15,9 @@ class Player(GameObject):
         self.weapon = Weapon()
 
     def update(self):
-        x_direction = int(self.game.keys[pygame.K_RIGHT]) - int(self.game.keys[pygame.K_LEFT])
-        y_direction = int(self.game.keys[pygame.K_DOWN]) - int(self.game.keys[pygame.K_UP])
+        x_direction = int(self.game.keys[pygame.K_d]) - int(self.game.keys[pygame.K_a])
+        y_direction = int(self.game.keys[pygame.K_s]) - int(self.game.keys[pygame.K_w])
+
         self.move(x_direction, y_direction)
         self.keep_inside_world()
         if pygame.K_SPACE in self.game.just_pressed:

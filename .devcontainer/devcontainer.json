@@ -12,7 +12,10 @@
   },
   "forwardPorts": [6080],
   "portsAttributes": {
-    "6080": {"label": "Gamevenster (GUI)", "onAutoForward": "openPreview"}
+    "6080": {
+      "label": "🎮 Gamevenster",
+      "onAutoForward": "openBrowser"
+    }
   },
   "postCreateCommand": "bash .devcontainer/postCreateCommand.sh",
   "customizations": {

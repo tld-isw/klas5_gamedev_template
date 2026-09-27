@@ -12,6 +12,8 @@ class Player(GameObject):
                          color=(115, 211, 255))
         self.speed = 200
 
+    # TODO: Als de pijltjes niet werken met noVNC dan moet je ze even veranderen naar WASD
+    # Bijv. self.game.keys[pygame.K_d voor rechts. 
     def update(self):
         # Startpunt van opdracht 1: alleen rechts werkt al.
         if self.game.keys[pygame.K_RIGHT]:
@@ -33,6 +35,7 @@ class Star(GameObject):
         if self.collides_with(self.game.player):
             self.game.score += 1
             self.remove()
+    
 
 
 class StarGame(Game):
