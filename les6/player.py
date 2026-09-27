@@ -8,8 +8,7 @@ class Player(GameObject):
     """Beweegt, schiet en beheert zijn eigen health."""
 
     def __init__(self, x, y):
-        # VERVANG DOOR PLAATJE: image = load_image("player.png", (36, 36))
-        super().__init__(None, x, y, width=36, height=36, color=(115, 211, 255))
+        super().__init__(load_image("mageheroman_voor.png", (36, 36)), x, y, width=36, height=36, color=(115, 211, 255))
         self.speed = 220
         self.max_health = 5
         self.health = 5

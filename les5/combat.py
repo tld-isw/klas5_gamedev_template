@@ -1,30 +1,29 @@
-"""Les 5: Weapon maakt Bullet; Bullet handelt de treffer af."""
+"""Les 5: Weapon maakt Fireball; Fireball handelt de treffer af."""
 from game_core import GameObject, load_image
 from enemy import Enemy
 
 
 class Weapon:
-    """Een wapen bewaart schade en kogelsnelheid en maakt een Bullet."""
+    """Een wapen bewaart schade en snelheid van vuurballen en maakt een Fireball."""
 
-    def __init__(self, damage=1, bullet_speed=440):
+    def __init__(self, damage=1, fireball_speed=440):
         self.damage = damage
-        self.bullet_speed = bullet_speed
+        self.fireball_speed = fireball_speed
 
     def shoot(self, player):
-        # VERVANG DOOR PLAATJE: bullet_image = load_image("bullet.png", (14, 10))
-        bullet_image = None
-        bullet = Bullet(bullet_image, player.x + player.width,
-                        player.y + player.height / 2 - 5,
-                        damage=self.damage, speed=self.bullet_speed)
+        fireball_image = load_image("blue_fire_small.png", (14, 14))
+        fireball = Fireball(fireball_image, player.x + player.width,
+                            player.y + player.height / 2 - 7,
+                            damage=self.damage, speed=self.fireball_speed)
         # Maken en toevoegen zijn twee aparte stappen; zoek ze in het werkboek.
-        player.game.add_object(bullet)
+        player.game.add_object(fireball)
 
 
-class Bullet(GameObject):
-    """Vliegt naar rechts en verdwijnt bij de rand of na een treffer."""
+class Fireball(GameObject):
+    """Vuurbol vliegt naar rechts en verdwijnt bij de rand of een treffer."""
 
     def __init__(self, image, x, y, damage=1, speed=440):
-        super().__init__(image, x, y, width=14, height=10, color=(255, 207, 87))
+        super().__init__(image, x, y, width=14, height=14, color=(80, 175, 255))
         self.damage = damage
         self.speed = speed
 
@@ -38,4 +37,3 @@ class Bullet(GameObject):
                 enemy.take_damage(self.damage)
                 self.remove()
                 break
-

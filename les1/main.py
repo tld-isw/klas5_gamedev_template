@@ -7,8 +7,7 @@ class Player(GameObject):
     """De speler controleert iedere frame welke pijltjestoets wordt gebruikt."""
 
     def __init__(self, x, y):
-        # VERVANG DOOR PLAATJE: player_image = load_image("player.png", (36, 36))
-        player_image = None
+        player_image = load_image("warriorman_voor.png", (36, 36))
         super().__init__(player_image, x, y, width=36, height=36,
                          color=(115, 211, 255))
         self.speed = 200
@@ -19,15 +18,14 @@ class Player(GameObject):
             self.move(1, 0)
         # Voeg hieronder zelf links, boven en beneden toe.
         # Later kun je hier ook een sprint met pygame.K_LSHIFT onderzoeken.
-        self.keep_inside_world()
+        # De grens van de spelwereld onderzoek je later in een verdiepingsopdracht.
 
 
 class Star(GameObject):
     """Een ster verhoogt de score en verdwijnt na aanraking."""
 
     def __init__(self, x, y):
-        # VERVANG DOOR PLAATJE: star_image = load_image("star.png", (25, 25))
-        star_image = None
+        star_image = load_image("ster.png", (25, 25))
         super().__init__(star_image, x, y, width=25, height=25,
                          color=(255, 207, 87), shape="circle")
 
@@ -46,3 +44,6 @@ class StarGame(Game):
         for x, y in [(260, 240), (420, 115), (580, 330), (730, 230)]:
             self.add_object(Star(x, y))
 
+
+if __name__ == "__main__":
+    start(StarGame)

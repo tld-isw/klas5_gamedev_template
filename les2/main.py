@@ -12,8 +12,7 @@ class CoinGame(Game):
     def __init__(self):
         super().__init__("Les 2 - Munten")
         self.player = self.add_object(Player(90, 230))
-        # VERVANG DOOR PLAATJE: coin_image = load_image("coin.png", (25, 25))
-        coin_image = None
+        coin_image = load_image("gold_coin.png", (25, 25))
         coin1 = Coin(
             coin_image,
             200,

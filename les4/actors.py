@@ -5,8 +5,7 @@ from game_core import GameObject, load_image
 
 class Player(GameObject):
     def __init__(self, x, y):
-        # VERVANG DOOR PLAATJE: image = load_image("player.png", (36, 36))
-        super().__init__(None, x, y, width=36, height=36, color=(115, 211, 255))
+        super().__init__(load_image("warriorman_voor.png", (36, 36)), x, y, width=36, height=36, color=(115, 211, 255))
         self.speed = 220
         self.health = 5
         # Health is hier nog bewust niet op het scherm zichtbaar.

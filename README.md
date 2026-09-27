@@ -33,7 +33,7 @@ In les 1 staan de stappen uitgebreider in het werkboek.
 | `les2` | twee munten | derde instantie, eigen waarde per munt |
 | `les3` | gewone en achtervolgende vijand | gedrag en `FastEnemy` |
 | `les4` | munt werkt, vijand herkent botsing | schade, verwijderen, `take_damage()` |
-| `les5` | wapen, kogels, vijanden, speler met healthbar | wapeneigenschappen en eigen uitbreiding |
+| `les5` | magiër, wapen, vuurballen en vijanden | wapeneigenschappen en eigen uitbreiding |
 | `les6` | kleine werkende arena | zelfgekozen beperkte uitbreiding |
 
 De bestandsindeling groeit mee met de omvang van de game:
@@ -42,13 +42,14 @@ De bestandsindeling groeit mee met de omvang van de game:
 | --- | --- |
 | 1 | `main.py`: speler, sterren en game samen |
 | 2 | `main.py`: game; `objects.py`: speler en munt |
-| 3 | `main.py`: starten; `game.py`: objecten plaatsen; `actors.py`: speler en vijanden |
-| 4 | `game.py`: spelwereld; `actors.py`: speler en vijand; `items.py`: munt |
-| 5 | `game.py`: spelwereld; `player.py` en `enemy.py`: figuren; `combat.py`: wapen en kogel; `hud.py`: healthbar |
-| 6 | als les 5, met een extra `coin.py` en een achtervolgende vijand |
+| 3 | `main.py`: gameclass, objecten plaatsen en starten; `actors.py`: speler en vijanden |
+| 4 | `main.py`: spelwereld en starten; `actors.py`: speler en vijand; `items.py`: munt |
+| 5 | `main.py`: spelwereld en starten; `player.py` en `enemy.py`: figuren; `combat.py`: wapen en vuurbol; `hud.py`: healthbar |
+| 6 | `main.py`: arena en starten; verder als les 5, met extra `coin.py` en een achtervolgende vijand |
 
-Vanaf les 3 is `main.py` alleen nog het startpunt. Een object toevoegen doe je
-in `game.py`; het gedrag wijzig je in het bestand van die groep.
+In iedere les staat de class die van `Game` erft in `main.py`. Daar worden
+objecten gemaakt en wordt de game gestart. Het gedrag van de speler, vijanden
+en andere objecten staat vanaf les 3 in bestanden per onderwerp.
 
 `game_core.py` is in elke map dezelfde gedocumenteerde basis. Die bevat
 `GameObject` en `Game`, met beweging, botsing, update, draw en de game loop.
@@ -57,27 +58,48 @@ nodig hebt. Zoek in `game_core.py` op wat een methode doet als je dat wilt
 weten. Dit is ook een startpunt voor het latere
 **aparte gameproject**, maar dat project krijgt zijn eigen ontwerp en beoordeling.
 
-## Vormen later door afbeeldingen vervangen
+## Gedeelde sprites
 
-Bij de objectclass of in `game.py`/`main.py` staat een commentaarregel **VERVANG DOOR PLAATJE**.
-Zet bijvoorbeeld `player.png` in `les5/assets/` en wijzig:
+Alle zes lessen gebruiken de enige map `assets/` in de hoofdmap van de repository.
+Je hoeft afbeeldingen niet naar een lesmap te kopiëren. `load_image("naam.png", (breedte, hoogte))`
+zoekt vanuit elk lesbestand automatisch in die gedeelde map. De startgames laden
+meteen afbeeldingen; als een afbeelding ontbreekt, verschijnt een gekleurde vorm.
 
-```python
-# VERVANG DOOR PLAATJE: image = load_image("player.png", (36, 36))
-super().__init__(None, x, y, width=36, height=36, color=(115, 211, 255))
-```
+| Rol in de lessen | Bestand in `assets/` |
+| --- | --- |
+| Speler (les 1 t/m 4) | `warriorman_voor.png` |
+| Magiër (les 5 en 6) | `mageheroman_voor.png` |
+| Ster (les 1) | `ster.png` |
+| Munt (les 2, 4 en 6) | `gold_coin.png` |
+| Vijand (les 3 t/m 6) | `ratman_voor.png` |
+| Vuurbol (les 5 en 6) | `blue_fire_small.png` |
 
-in:
+De map bevat daarnaast varianten van de personages voor achter, links en rechts,
+andere personages, een zilveren munt, magieprojectielen en achtergronden. De namen
+`warriorman` en `warriorwoman` zijn bewust gecorrigeerd; gebruik de exacte
+bestandsnamen. De vuurballen in de startgame gaan alleen naar rechts. Een andere
+richting of animatie toevoegen is een mogelijke uitbreiding, geen vereiste
+voor het starten van de lessen.
 
-```python
-image = load_image("player.png", (36, 36))
-super().__init__(image, x, y, width=36, height=36, color=(115, 211, 255))
-```
+## Achtergronden
 
-Ook bij een ontbrekend bestand blijft de vorm zichtbaar: `load_image()` geeft
-dan `None` terug. Een afbeelding met transparante achtergrond werkt het best.
-Pas de grootte in de aanroep aan de gewenste afmetingen aan. Zie per les het
-commentaar voor de namen van munt, vijand, kogel en ster.
+`Game` tekent de achtergrond vóór de objecten en de HUD. Les 1 tot en met 4
+gebruiken `assets/field.png`, les 5 gebruikt `assets/grotto.png` en les 6
+gebruikt `assets/dungeon.png`. `load_image()` schaalt de achtergrond naar het
+spelvenster. Het veld komt uit `game_core.py`; les 5 en 6 kiezen hun eigen
+achtergrond in `main.py`. Bij een ontbrekend bestand gebruikt de game een
+effen achtergrondkleur.
+
+## Geluiden
+
+De geluiden staan in `assets/audio/`. `fire_magic.mp3` past bij een vuuraanval en kan door leerlingen zelf
+aan het schieten worden gekoppeld. `arrow_shoot.mp3` is beschikbaar voor
+een eigen boogschutter; `forest_ambience.mp3`, `cave_ambience.mp3` en
+`dungeon_ambience.mp3` zijn sfeer voor een eigen level. Geen van de geluiden
+speelt in de startcode vanzelf af: zelf koppelen blijft een uitbreiding.
+In [`assets/audio/README.md`](assets/audio/README.md) staan de bronvermeldingen,
+de oorspronkelijke bestandsnamen en een opmerking over de lengte van de geluiden.
+Neem die bronvermeldingen ook over als je het spel verder verspreidt.
 
 ## Samenwerken (Les A)
 

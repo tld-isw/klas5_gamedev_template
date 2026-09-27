@@ -16,12 +16,12 @@ FPS = 60
 
 
 def load_image(filename, size=None):
-    """Laad een plaatje uit assets/. Geef None terug als het nog ontbreekt.
+    """Laad een afbeelding uit de gedeelde map assets in de projectroot.
 
-    Voorbeeld: player_image = load_image("player.png", (36, 36))
-    Het object blijft met een gekleurde vorm zichtbaar zonder afbeelding.
+    Voorbeeld: load_image("mageheroman_voor.png", (36, 36)).
+    Bij een ontbrekend bestand blijft de gekleurde vorm zichtbaar.
     """
-    path = Path(__file__).parent / "assets" / filename
+    path = Path(__file__).resolve().parent.parent / "assets" / filename
     if not path.exists():
         return None
     image = pygame.image.load(str(path)).convert_alpha()
@@ -126,6 +126,7 @@ class Game:
         self.player = None
         self.score = 0
         self.background_color = (23, 27, 51)
+        self.background_image = load_image("field.png", (self.width, self.height))
         self.font = pygame.font.Font(None, 28)
         self.running = True
 
@@ -160,7 +161,10 @@ class Game:
                 if obj.alive:
                     obj.update()
             self.objects = [obj for obj in self.objects if obj.alive]
-            self.screen.fill(self.background_color)
+            if self.background_image is not None:
+                self.screen.blit(self.background_image, (0, 0))
+            else:
+                self.screen.fill(self.background_color)
             for obj in self.objects:
                 obj.draw(self.screen)
             self.draw_hud()

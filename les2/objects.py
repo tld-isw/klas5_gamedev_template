@@ -7,8 +7,7 @@ class Player(GameObject):
     """Speler met volledige besturing, zodat de aandacht naar instanties gaat."""
 
     def __init__(self, x, y):
-        # VERVANG DOOR PLAATJE: player_image = load_image("player.png", (36, 36))
-        player_image = None
+        player_image = load_image("warriorman_voor.png", (36, 36))
         super().__init__(player_image, x, y, width=36, height=36,
                          color=(115, 211, 255))
         self.speed = 230
